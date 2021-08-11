@@ -18,7 +18,7 @@ export default function Login() {
       body: JSON.stringify(user),
     })
       .then((response) =>
-        response.ok
+        response.status === 200
           ? setLoginResponse("User now logged in")
           : setLoginResponse("Authentication failed")
       )

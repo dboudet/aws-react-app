@@ -20,6 +20,7 @@ body {
   min-height: 80vh;
   min-width: 800px;
   max-width: 60vw;
+  padding: 24px;
 }
 .signup-container input, .login-container input {
   margin: 20px;
@@ -46,4 +47,13 @@ body {
 }
 .login-container h3 {
   padding:20px 0;
+}
+
+.userList {
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.userList > .singleUser {
+  padding: 10px;
 }

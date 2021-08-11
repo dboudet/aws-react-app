@@ -20,11 +20,13 @@ export default function Signup() {
       },
       body: JSON.stringify(user),
     })
-      .then((response) => console.log(response))
-      .then((user) => console.log("User info sent:", user))
+      // fetch ALWAYS requires two .thens...
+      .then((response) => response.json())
+      .then((data) => {
+        localStorage.setItem("user", JSON.stringify(data))
+      })
+      .then(() => window.location.reload(false))
       .catch((err) => console.error(err))
-
-    window.location.reload(false)
   }
 
   const handleFormData = (event) => {
@@ -68,17 +70,28 @@ export default function Signup() {
       >
         Sign me up!
       </button>
-      {/* {allUsers &&
-        allUsers.map((singleUser) => {
-          return (
-            <div key={singleUser._id}>
-              <p>{singleUser.firstName}</p>
-              <p>{singleUser.lastName}</p>
-              <p>{singleUser.email}</p>
-            </div>
-          )
-        })} */}
-      <Link to="/login">Go to login page</Link>
+        <Link to="/login">Go to login page</Link>
+      <div className="userList">
+        {allUsers &&
+          allUsers.map((singleUser) => {
+            return (
+              <div className="singleUser" key={singleUser._id}>
+                <p>{singleUser.firstName}</p>
+                <p>{singleUser.lastName}</p>
+                <p>{singleUser.email}</p>
+              </div>
+            )
+          })}
+      </div>
+      <button onClick={() => localStorage.clear()}>Clear local storage</button>
+      <button
+        onClick={() => {
+          const localUser = JSON.parse(localStorage.getItem("user"))
+          console.log(localUser)
+        }}
+      >
+        Get local storage
+      </button>
     </div>
   )
 }
