@@ -11,7 +11,7 @@ body {
   justify-content: center;
 }
 
-.signup-container, .login-container {
+.signup-container, .login-container, .logInForm {
   display: flex;
   flex-direction: column;
   align-items: center;

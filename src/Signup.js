@@ -20,7 +20,7 @@ export default function Signup() {
       },
       body: JSON.stringify(user),
     })
-      // fetch ALWAYS requires two .thens...
+      // fetch ALWAYS requires two .thens...(?)
       .then((response) => response.json())
       .then((data) => {
         localStorage.setItem("user", JSON.stringify(data))

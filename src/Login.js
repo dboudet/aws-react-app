@@ -19,9 +19,12 @@ export default function Login() {
     })
       .then((response) =>
         response.status === 200
-          ? setLoginResponse("User now logged in")
-          : setLoginResponse("Authentication failed")
+          ? response.json()
+          : console.log("authentication error")
       )
+      .then((data) => {
+        localStorage.setItem("user", JSON.stringify(data))
+      })
       .catch((err) => console.error(err))
   }
 
@@ -40,17 +43,13 @@ export default function Login() {
         placeholder="Password"
         onChange={handleFormData}
       />
-      {loginResponse !== "login" ? (
-        <h3>{loginResponse}</h3>
-      ) : (
-        <button
-          type="submit"
-          onClick={handleUserLogin}
-          disabled={user.email && user.password ? false : true}
-        >
-          Log In
-        </button>
-      )}
+      <button
+        type="submit"
+        onClick={handleUserLogin}
+        disabled={user.email && user.password ? false : true}
+      >
+        Log In
+      </button>
 
       <Link to="/">Go to signup page</Link>
     </div>
