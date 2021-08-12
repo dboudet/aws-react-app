@@ -6,14 +6,14 @@ export default function Signup() {
   const [allUsers, setAllUsers] = useState([])
 
   useEffect(() => {
-    fetch("http://localhost:5000/users")
+    fetch(`${process.env.REACT_APP_API_ENDPOINT}/users`)
       .then((rawData) => rawData.json())
       .then((allUsers) => setAllUsers(allUsers))
       .catch((err) => console.error(err))
   }, [])
-
+ 
   const handleCreateUser = () => {
-    fetch("http://localhost:5000/create-user", {
+    fetch(`${process.env.REACT_APP_API_ENDPOINT}/create-user`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

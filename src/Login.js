@@ -10,7 +10,7 @@ export default function Login() {
   }
 
   const handleUserLogin = () => {
-    fetch("http://localhost:5000/login", {
+    fetch(`${process.env.REACT_APP_API_ENDPOINT}/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
